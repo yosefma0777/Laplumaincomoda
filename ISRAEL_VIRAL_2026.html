@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISRAEL BAJO LA TORÁ — La Pluma Incómoda</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --paper: #111111;
+    --gold: #c9a84c;
+    --gold-dim: #7a6230;
+    --red: #cc2200;
+    --white: #f0ece0;
+    --gray: #888;
+    --blue-star: #3a5fd9;
+    --accent: #e8c96a;
+    --irony: #ff6b35;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  /* HEADER */
+  .masthead {
+    border-bottom: 1px solid var(--gold-dim);
+    padding: 12px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+
+  .masthead .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: 6px;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '✡';
+    position: absolute;
+    font-size: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--blue-star);
+    opacity: 0.04;
+    pointer-events: none;
+    animation: pulse-star 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse-star {
+    0%, 100% { opacity: 0.03; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.07; transform: translate(-50%, -50%) scale(1.02); }
+  }
+
+  .category-tag {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    padding: 4px 16px;
+    margin-bottom: 30px;
+    animation: fadeSlideDown 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 12vw, 130px);
+    line-height: 0.9;
+    color: var(--white);
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+    animation: fadeSlideDown 0.8s ease 0.1s both;
+  }
+
+  .hero h1 span.highlight {
+    color: var(--gold);
+    display: block;
+  }
+
+  .subtitle {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(16px, 3vw, 24px);
+    font-style: italic;
+    color: var(--gray);
+    margin: 20px 0 40px;
+    line-height: 1.5;
+    animation: fadeSlideDown 0.8s ease 0.2s both;
+  }
+
+  .divider-gold {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 30px auto;
+  }
+
+  /* LEAD / INTRO */
+  .lead-block {
+    max-width: 720px;
+    margin: 0 auto 60px;
+    padding: 0 40px;
+    animation: fadeSlideDown 0.8s ease 0.3s both;
+  }
+
+  .lead-block p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.5vw, 22px);
+    line-height: 1.8;
+    color: var(--white);
+    text-align: center;
+  }
+
+  .sarcasm {
+    color: var(--irony);
+    font-style: italic;
+  }
+
+  .irony {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* BIG QUOTE / CALLOUT */
+  .big-callout {
+    background: linear-gradient(135deg, #1a0f0f, #0f1a0f);
+    border-left: 6px solid var(--gold);
+    margin: 40px auto;
+    max-width: 800px;
+    padding: 40px 50px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .big-callout::after {
+    content: '"';
+    position: absolute;
+    right: 20px;
+    top: -20px;
+    font-size: 200px;
+    color: var(--gold);
+    opacity: 0.07;
+    font-family: 'Playfair Display', serif;
+    line-height: 1;
+  }
+
+  .big-callout p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--accent);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* SECTION */
+  .section {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 40px;
+  }
+
+  .section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gold-dim);
+  }
+
+  .section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 6vw, 64px);
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+  }
+
+  .section h2 .crack {
+    color: var(--red);
+  }
+
+  .section p {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    line-height: 2;
+    color: #bbb;
+    margin-bottom: 20px;
+  }
+
+  .section p strong {
+    color: var(--white);
+    font-weight: 700;
+  }
+
+  /* VIRAL PUNCH LINES */
+  .punchline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3.5vw, 32px);
+    font-style: italic;
+    color: var(--white);
+    border-top: 1px solid var(--gold-dim);
+    border-bottom: 1px solid var(--gold-dim);
+    padding: 28px 0;
+    margin: 36px 0;
+    text-align: center;
+    line-height: 1.5;
+    position: relative;
+  }
+
+  .punchline .kicker {
+    display: block;
+    font-size: 12px;
+    font-family: 'Space Mono', monospace;
+    font-style: normal;
+    color: var(--irony);
+    letter-spacing: 3px;
+    margin-top: 12px;
+  }
+
+  /* TRIO CARDS */
+  .trio {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    margin: 40px 0;
+    background: var(--gold-dim);
+  }
+
+  .trio-card {
+    background: var(--paper);
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .trio-card:hover { background: #1a1a1a; }
+
+  .trio-card .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: var(--gold);
+    opacity: 0.15;
+    position: absolute;
+    right: 10px;
+    top: -10px;
+    line-height: 1;
+  }
+
+  .trio-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .trio-card p {
+    font-size: 13px;
+    color: #999;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* QUANTUM PARADOX BLOCK */
+  .quantum {
+    background: #050a1a;
+    border: 1px solid var(--blue-star);
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 50px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quantum::before {
+    content: 'PARADOJA CUÁNTICA';
+    position: absolute;
+    top: 16px;
+    left: 24px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--blue-star);
+  }
+
+  .quantum .qtext {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(18px, 3vw, 26px);
+    font-style: italic;
+    color: #a0c4ff;
+    line-height: 1.7;
+    margin-top: 16px;
+  }
+
+  .quantum .qtext span {
+    color: var(--white);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  /* IRONY BOMB */
+  .irony-bomb {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 40px;
+    text-align: center;
+  }
+
+  .irony-bomb .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .irony-bomb .bomb-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 8vw, 90px);
+    line-height: 0.95;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+
+  .irony-bomb .bomb-text em {
+    color: var(--irony);
+    font-style: normal;
+  }
+
+  .irony-bomb .sub {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--gray);
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  /* CLOSING MANIFESTO */
+  .manifesto {
+    background: linear-gradient(180deg, #0d0800, #1a0500);
+    padding: 80px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .manifesto::before {
+    content: '⚡';
+    position: absolute;
+    font-size: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.04;
+    animation: rotate 20s linear infinite;
+  }
+
+  @keyframes rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  .manifesto h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(50px, 10vw, 110px);
+    color: var(--gold);
+    line-height: 0.9;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .manifesto p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.5vw, 24px);
+    color: var(--white);
+    max-width: 700px;
+    margin: 0 auto 20px;
+    line-height: 1.8;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+
+  .manifesto .final-line {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(24px, 4vw, 48px);
+    color: var(--red);
+    letter-spacing: 2px;
+    margin-top: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid #222;
+    padding: 30px 40px;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #444;
+    text-transform: uppercase;
+  }
+
+  /* SHARE BADGES */
+  .share-badges {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 40px auto;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    background: transparent;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    padding: 10px 28px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .badge:hover {
+    background: var(--gold);
+    color: var(--bg);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RED FLASH HEADLINE */
+  .flash-headline {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    letter-spacing: 4px;
+    padding: 6px 20px;
+    margin: 10px 0;
+    animation: flash 2s ease-in-out infinite;
+  }
+
+  @keyframes flash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .masthead, .section, .lead-block { padding: 0 20px; }
+    .masthead { flex-direction: column; gap: 8px; text-align: center; }
+    .hero { padding: 60px 20px 40px; }
+    .big-callout { padding: 30px 24px; }
+    .quantum { padding: 40px 24px; }
+    .manifesto { padding: 60px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <span class="logo">La Pluma Incómoda</span>
+  <span>Yosef Ma · Marzo 2026</span>
+  <span>Edición Viral</span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="category-tag">⚠ ANÁLISIS POLÍTICO CON SARCASMO INCLUIDO ⚠</div>
+  <h1>
+    ISRAEL
+    <span class="highlight">BAJO LA TORÁ</span>
+  </h1>
+  <p class="subtitle">Cuando la democracia se arrodilla, la religión se sienta en su escritorio,<br>pone los pies encima y ordena pizza kosher a nombre del Estado.</p>
+  <div class="divider-gold"></div>
+  <div class="flash-headline">✡ ACTUALIZACIÓN URGENTE DEL SIGLO XXI ✡</div>
+</div>
+
+<!-- LEAD -->
+<div class="lead-block reveal">
+  <p>
+    Hay países donde la política se decide en parlamentos.<br>
+    Hay países donde la política se decide en elecciones.<br>
+    Y luego está <strong>Israel, 2026</strong>…<br><br>
+    donde la política se decide entre <span class="sarcasm">rabinos, profecías de tres mil años de antigüedad</span>
+    y coaliciones que usan a Dios como <span class="irony">socio mayoritario del gobierno</span>.<br><br>
+    Sin participación en pérdidas, claro. Solo en territorio.
+  </p>
+</div>
+
+<!-- BIG CALLOUT -->
+<div class="big-callout reveal">
+  <p>"Netanyahu no gobierna exactamente. Gobierna… mientras negocia su supervivencia política con partidos que creen que la <em>geopolítica moderna</em> debe obedecer mapas escritos cuando no existía ni el papel."</p>
+</div>
+
+<!-- SECCIÓN 1 -->
+<div class="section reveal">
+  <div class="section-label">I · El Gobierno</div>
+  <h2>EL GOBIERNO<br><span class="crack">REHÉN</span> DE DIOS</h2>
+
+  <p>La coalición Netanyahu depende de tres pilares ideológicos magníficos: <strong>Shas</strong>, <strong>Judaísmo Unido de la Torá</strong>, y el glamoroso <strong>Sionismo Religioso</strong>. Traducido al lenguaje del siglo XXI: si esos señores se levantan de la mesa, el gobierno cae. No porque haya crisis económica. No porque haya escándalo. Sino porque <span class="sarcasm">Dios, según ellos, así lo quiere</span>.</p>
+
+  <p>La diplomacia ha dejado de ser negociación. Se ha convertido, sin exagerar ni un milímetro, en <strong>teología aplicada a la geopolítica</strong>. Las fronteras ya no se negocian en mesas. Se <em>interpretan</em> en escrituras. Y si Moisés no cartografió bien el GPS hace cuatro mil años, pues el problema es tuyo.</p>
+
+  <div class="punchline">
+    "Cuando tu política exterior depende de un libro escrito antes de la invención de la brújula…
+    quizás estés navegando con el instrumento equivocado."
+    <span class="kicker">— LA IRONÍA NO SE CANSA DE INTENTARLO</span>
+  </div>
+</div>
+
+<!-- TRIO CARDS -->
+<div class="section reveal">
+  <div class="trio">
+    <div class="trio-card">
+      <span class="num">1</span>
+      <h3>SHAS</h3>
+      <p>Partido ultraortodoxo sefardí. Su posición en el gobierno: inamovible. Su contribución al ejército que defiende ese gobierno: mínima. La lógica es impecable si no te paras a pensar.</p>
+    </div>
+    <div class="trio-card">
+      <span class="num">2</span>
+      <h3>UTJ</h3>
+      <p>Judaísmo Unido de la Torá. Ashkenazí. Muy unido. Muy a la Torá. Menos unido a la idea de que vivir en un Estado moderno implica contribuir a su defensa.</p>
+    </div>
+    <div class="trio-card">
+      <span class="num">3</span>
+      <h3>SIONISMO<br>RELIGIOSO</h3>
+      <p>Ben Gvir + Smotrich. Mesianismo con cartera ministerial. La combinación más explosiva desde que alguien tuvo la brillante idea de mezclar fe y armas.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECCIÓN 2 — REZAR -->
+<div class="section reveal">
+  <div class="section-label">II · La Gran Paradoja</div>
+  <h2>REZAR MIENTRAS<br><span class="crack">OTROS</span> MUEREN</h2>
+
+  <p>Aquí viene la parte que haría reír si no fuera tan dolorosa. Mientras soldados israelíes combaten y mueren en Gaza, <strong>miles de estudiantes ultraortodoxos están exentos del servicio militar</strong> porque estudian la Torá en yeshivás.</p>
+
+  <p>La justificación teológica es, hay que reconocerlo, de una creatividad admirable: <span class="sarcasm">estudiar la Torá protege espiritualmente al país</span>. Unos defienden a Israel con fusiles. Otros lo defienden con rezos. El ejército necesita doce mil reclutas. Los rabinos ofrecen oraciones. El tipo de cambio, al momento de esta publicación, <em>no es favorable</em>.</p>
+
+  <p>El Tribunal Supremo israelí declaró esas exenciones <strong>inconstitucionales en 2024</strong>. Netanyahu, fiel a su reputación de estadista con principios firmes, archivó el fallo en el cajón donde guarda todas las cosas incómodas. Si obedecía la sentencia, perdía el gobierno. Si la ignoraba, perdía la coherencia democrática. Eligió lo segundo. Al menos es consistente.</p>
+
+  <div class="punchline">
+    "El Estado de derecho es un concepto hermoso.<br>Especialmente cuando se aplica a los demás."
+    <span class="kicker">— SABIDURÍA POLÍTICA CONTEMPORÁNEA</span>
+  </div>
+</div>
+
+<!-- QUANTUM BLOCK -->
+<div class="quantum reveal">
+  <div class="qtext">
+    En <span>física cuántica</span>, una partícula puede existir en dos estados al mismo tiempo hasta que alguien la observe. En <span>política israelí</span>, el gobierno puede ser simultáneamente una <span>democracia</span> y una <span>teocracia</span> hasta que alguien lo nombra en voz alta. El colapso de la función de onda ocurre exactamente en el momento en que Ben Gvir abre la boca.
+  </div>
+</div>
+
+<!-- SECCIÓN 3 — MESIANISMO -->
+<div class="section reveal">
+  <div class="section-label">III · Los Protagonistas</div>
+  <h2>CUANDO EL<br>MESIANISMO<br><span class="crack">FIRMA DECRETOS</span></h2>
+
+  <p><strong>Bezalel Smotrich</strong>, ministro de Finanzas, niega la existencia del pueblo palestino con la soltura de quien niega haber comido el último trozo de pastel. Para él, Cisjordania no es Cisjordania: es <em>"Judea y Samaria"</em>, territorio bíblico, prometido, sagrado. La política exterior se convierte entonces en <span class="sarcasm">arqueología religiosa con presupuesto estatal</span>. No se negocian fronteras. Se interpretan versículos.</p>
+
+  <p>Y luego está <strong>Itamar Ben Gvir</strong>, ministro de Seguridad Nacional, quien durante años tuvo en la sala de su casa el retrato de <strong>Baruch Goldstein</strong>, el autor de la masacre de Hebrón de 1994. Veintinueve fieles musulmanes asesinados mientras rezaban. El retrato seguía en la pared cuando Ben Gvir entró al gobierno. Un hombre que admira a un terrorista que mató gente mientras rezaba, ahora dirige la seguridad de un Estado. La ironía histórica no podría ser más brutalmente perfecta si la escribiera un novelista de mal humor.</p>
+</div>
+
+<!-- IRONY BOMB -->
+<div class="irony-bomb reveal">
+  <div class="eyebrow">⚡ Bomba de ironía nivel: nuclear ⚡</div>
+  <div class="bomb-text">
+    EXPULSAR EN<br>
+    NOMBRE DE <em>YAHVÉ</em><br>
+    NO ES MÁS JUSTO<br>
+    QUE EN NOMBRE<br>
+    DE <em>ALÁ</em>
+  </div>
+  <p class="sub">El fundamentalismo no tiene religión favorita.<br>Solo tiene el mismo resultado de siempre:</br>alguien pierde la casa y alguien gana un versículo.</p>
+</div>
+
+<!-- SECCIÓN 4 — LA GRIETA -->
+<div class="section reveal">
+  <div class="section-label">IV · El Sistema Que Cruje</div>
+  <h2>LA DEMOCRACIA<br>EMPIEZA A<br><span class="crack">ROMPERSE</span></h2>
+
+  <p>Cuando la religión entra al poder político con pretensiones absolutas, la democracia no colapsa de golpe. <strong>Cruje primero</strong>. Se fisura. Las grietas se hacen grietas, las grietas se hacen abismos, y cuando alguien por fin mira hacia abajo, el suelo ya no está.</p>
+
+  <p>Los partidos religiosos <strong>bloquean acuerdos de paz</strong> porque renunciar a territorio sería desobedecer a Dios. Netanyahu intenta <strong>debilitar al Tribunal Supremo</strong> porque la justicia se convirtió en el último obstáculo antes del abismo. Y mientras tanto, lenta y meticulosamente, se avanza en la <em>sacralización del espacio público</em>: mezuzot obligatorias en edificios del Estado, presiones contra locales no kosher, transporte detenido en Shabat.</p>
+
+  <p>No es una teocracia formal. <span class="sarcasm">Todavía</span>. Pero como toda buena transformación autoritaria, se hace en cámara lenta, con buenas razones, y con mucha indignación moral ante quien se atreve a señalarlo.</p>
+</div>
+
+<!-- BIG CALLOUT 2 -->
+<div class="big-callout reveal">
+  <p>"El pueblo judío sufrió durante siglos la persecución de Estados que tenían verdades absolutas otorgadas por Dios. <em>La lección más obvia de la historia más documentada del mundo</em>… y algunos eligieron no aprenderla."</p>
+</div>
+
+<!-- SECCIÓN 5 — IRONÍA MÁXIMA -->
+<div class="section reveal">
+  <div class="section-label">V · La Ironía Que Lo Dice Todo</div>
+  <h2>LA IRONÍA<br><span class="crack">MÁS</span><br>INCÓMODA</h2>
+
+  <p>El sionismo religioso extremo está reproduciendo, sobre otro pueblo, <strong>exactamente la misma lógica que durante siglos se usó para perseguir a los judíos</strong>: la superioridad divina de un grupo sobre otro, el derecho sagrado a la tierra por encima del derecho humano a vivir en ella, la certeza de que Dios está de tu lado y que eso lo justifica todo.</p>
+
+  <p>No hay diferencia moral entre quien expulsa a alguien en nombre de Alá y quien lo expulsa en nombre de Yahvé. <span class="sarcasm">Ambos llegan al mismo resultado. Solo cambia la pronunciación de Dios en el papeleo.</span></p>
+</div>
+
+<!-- MANIFESTO FINAL -->
+<div class="manifesto">
+  <h2>LA PROFECÍA<br>ARMADA</h2>
+  <p>Israel fue durante décadas presentado como la única democracia estable de Oriente Medio. Hoy enfrenta un peligro que no viene de afuera. Viene desde dentro. Cada concesión al fundamentalismo erosiona el sistema. Cada decisión basada en profecías empuja al país hacia algo más antiguo. Algo más peligroso.</p>
+  <p>Un Estado gobernado por revelaciones divinas no necesita elecciones. Solo necesita intérpretes de Dios. Y cuando un país empieza a confundir fronteras bíblicas con fronteras legales… ya no está gobernando un territorio moderno.</p>
+  <p><em>Está intentando gobernar una profecía con armas.</em></p>
+  <div class="final-line">Y eso, históricamente, nunca termina bien.</div>
+</div>
+
+<!-- SHARE -->
+<div style="background:#0d0d0d; padding: 40px; text-align: center;">
+  <p style="font-family:'Bebas Neue',sans-serif; font-size: 13px; letter-spacing: 5px; color: var(--gray); margin-bottom: 20px;">— YOSEF MA · LA PLUMA INCÓMODA — COMPARTE SI TE PARECE NECESARIO DECIRLO EN VOZ ALTA —</p>
+  <div class="share-badges">
+    <a class="badge" href="https://twitter.com/intent/tweet?text=ISRAEL+BAJO+LA+TORÁ%3A+Cuando+la+democracia+se+arrodilla+y+la+religión+gobierna.+Por+%40YosefMa+en+La+Pluma+Incómoda+%23Israel+%23Política+%23LaPlumaIncómoda" target="_blank">✖ TWITTER / X</a>
+    <a class="badge" href="https://www.facebook.com/sharer/sharer.php?u=https://laplumaincomoda.com&quote=ISRAEL+BAJO+LA+TORÁ+—+La+Pluma+Incómoda+por+Yosef+Ma" target="_blank">📘 FACEBOOK</a>
+    <a class="badge" href="https://api.whatsapp.com/send?text=ISRAEL+BAJO+LA+TORÁ%3A+Cuando+la+democracia+se+arrodilla+y+la+religión+gobierna.+Análisis+viral+de+Yosef+Ma+en+La+Pluma+Incómoda+🔥" target="_blank">💬 WHATSAPP</a>
+    <a class="badge" href="https://www.instagram.com/" target="_blank">📸 INSTAGRAM</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  La Pluma Incómoda &nbsp;·&nbsp; Yosef Ma &nbsp;·&nbsp; Marzo 2026 &nbsp;·&nbsp; Todos los argumentos son verificables &nbsp;·&nbsp; Las ironías son gratuitas
+</div>
+
+<script>
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
